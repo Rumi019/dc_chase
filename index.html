@@ -55,6 +55,7 @@
 
     var buildUrl = "Build";
     var loaderUrl = buildUrl + "/Dc-Chase.loader.js";
+    var unityInst;
     var config = {
       arguments: [],
       dataUrl: buildUrl + "/Dc-Chase.data",
@@ -103,6 +104,7 @@
       createUnityInstance(canvas, config, (progress) => {
         document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
       }).then((unityInstance) => {
+        unityInst = unityInstance
         document.querySelector("#unity-loading-bar").style.display = "none";
         document.querySelector("#unity-fullscreen-button").onclick = () => {
           unityInstance.SetFullscreen(1);
@@ -118,7 +120,7 @@
     // Function to pause the game
     function pauseGame() {
       try {
-        unityInstance.SendMessage('BGM_Manager', 'PauseFromJS')
+        unityInst.SendMessage('BGM_Manager', 'PauseFromJS')
         console.log("puaseGame")
       } catch (e) {
         console.log(e.message)
@@ -129,7 +131,7 @@
     // Function to resume the game
     function resumeGame() {
       try {
-        unityInstance.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
+        unityInst.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
         console.log("resumeGame")
       } catch (e) {
         console.log(e.message)
