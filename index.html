@@ -118,7 +118,7 @@
     // Function to pause the game
     function pauseGame() {
       try {
-        unityInst.SendMessage('BGM_Manager', 'PauseFromJS')
+        unityInstance.SendMessage('BGM_Manager', 'PauseFromJS')
         console.log("puaseGame")
       } catch (e) {
         console.log(e.message)
@@ -129,7 +129,7 @@
     // Function to resume the game
     function resumeGame() {
       try {
-        unityInst.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
+        unityInstance.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
         console.log("resumeGame")
       } catch (e) {
         console.log(e.message)
