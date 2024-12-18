@@ -55,10 +55,12 @@
         }
         updateBannerVisibility();
       }
-
+      
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Dc-Chase.loader.js";
+      var unityInst;
       var config = {
+        arguments: [],
         dataUrl: buildUrl + "/Dc-Chase.data",
         frameworkUrl: buildUrl + "/Dc-Chase.framework.js",
         codeUrl: buildUrl + "/Dc-Chase.wasm",
@@ -115,6 +117,7 @@
         createUnityInstance(canvas, config, (progress) => {
           progressBarFull.style.width = 100 * progress + "%";
               }).then((unityInstance) => {
+                unityInst = unityInstance
                 loadingBar.style.display = "none";
                 fullscreenButton.onclick = () => {
                   unityInstance.SetFullscreen(1);
@@ -125,7 +128,25 @@
             };
 
       document.body.appendChild(script);
+             // Function to pause the game
+    function pauseGame() {
+      try {
+        unityInst.SendMessage('BGM_Manager', 'PauseFromJS')
+        console.log("puaseGame")
+      } catch (e) {
+        console.log(e.message)
+      }
 
+    }
+    // Function to resume the game
+    function resumeGame() {
+      try {
+        unityInst.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
+        console.log("resumeGame")
+      } catch (e) {
+        console.log(e.message)
+      }
+    }
     </script>
   </body>
 </html>
