@@ -132,6 +132,7 @@
 
     function pauseGame() {
       console.log("[KMM] pauseGame() invoked");
+      console.log("[KMM] unity instance", unityInst);
       try {
         unityInst.SendMessage('BGM_Manager', 'PauseFromJS')
         console.log("[KMM] unityInst.SendMessage PauseFromJS succeeded");
