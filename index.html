@@ -131,21 +131,22 @@
     document.body.appendChild(script);
 
     function pauseGame() {
+      console.log("[KMM] pauseGame() invoked");
       try {
         unityInst.SendMessage('BGM_Manager', 'PauseFromJS')
-        console.log("puaseGame")
+        console.log("[KMM] unityInst.SendMessage PauseFromJS succeeded");
       } catch (e) {
-        console.log(e.message)
+        console.log("[KMM] pauseGame error: " + e.message)
       }
-
     }
     // Function to resume the game
     function resumeGame() {
+      console.log("[KMM] resumeGame() invoked");
       try {
         unityInst.SendMessage('BGM_Manager', 'ResumeFromJS') // Call the Unity method to resume the game
-        console.log("resumeGame")
+        console.log("[KMM] unityInst.SendMessage ResumeFromJS succeeded");
       } catch (e) {
-        console.log(e.message)
+        console.log("[KMM] resumeGame error: " + e.message)
       }
     }
 
